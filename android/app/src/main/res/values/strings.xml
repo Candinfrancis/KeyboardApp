@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">KeyboardApp</string>
+    <string name="ime_service_name">KeyboardApp IME</string>
+    <string name="ime_subtype_en">English</string>
 </resources>
