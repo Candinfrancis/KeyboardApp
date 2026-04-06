@@ -41,6 +41,7 @@ export const saveAndroidKeyboardConfig = async (
 export const loadAndroidKeyboardConfig = async (): Promise<{
   config: AndroidKeyboardConfig;
   usedFallback: boolean;
+  fallbackReason: 'missing' | 'invalid' | null;
 }> => {
   let raw = await AsyncStorage.getItem(ANDROID_IME_CONFIG_STORAGE_KEY);
 

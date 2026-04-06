@@ -95,17 +95,17 @@ export default function KeyboardScreen() {
 
   const loadAndroidPreview = useCallback(async () => {
     try {
-      const { config, usedFallback } = await loadAndroidKeyboardConfig();
+      const { config, fallbackReason } = await loadAndroidKeyboardConfig();
       setPreviewConfig(config);
       setRuntimeState(current => ({
         ...current,
         activeMode: config.defaultMode,
       }));
 
-      if (usedFallback) {
+      if (fallbackReason === 'invalid') {
         Alert.alert(
           'Fallback carregado',
-          'A configuração armazenada estava ausente ou corrompida.',
+          'A configuração armazenada estava corrompida.',
         );
       }
     } catch {
@@ -114,12 +114,22 @@ export default function KeyboardScreen() {
   }, []);
 
   useEffect(() => {
-    void syncAndroidConfig();
-  }, [syncAndroidConfig]);
+    let isActive = true;
 
-  useEffect(() => {
-    void loadAndroidPreview();
-  }, [loadAndroidPreview]);
+    const syncAndLoadPreview = async () => {
+      await syncAndroidConfig();
+      if (!isActive) {
+        return;
+      }
+      await loadAndroidPreview();
+    };
+
+    void syncAndLoadPreview();
+
+    return () => {
+      isActive = false;
+    };
+  }, [loadAndroidPreview, syncAndroidConfig]);
 
   useEffect(() => {
     const loadConsent = async () => {

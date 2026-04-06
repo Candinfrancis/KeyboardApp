@@ -21,7 +21,8 @@ const isActionType = (value: unknown): value is AndroidKeyboardActionType =>
   value === 'capsLock' ||
   value === 'nextKeyboard' ||
   value === 'switchLanguage' ||
-  value === 'switchMode';
+  value === 'switchMode' ||
+  value === 'imeAction';
 
 const isModeId = (value: unknown): value is AndroidKeyboardModeId =>
   value === 'qwerty' || value === 'numbers' || value === 'words' || value === 'photos' || value === 'audio';
@@ -90,6 +91,7 @@ export const isAndroidKeyboardConfig = (
 interface ValidationResult {
   config: AndroidKeyboardConfig;
   usedFallback: boolean;
+  fallbackReason: 'missing' | 'invalid' | null;
 }
 
 const defaultLayoutId: AndroidKeyboardLayoutId = 'multiMode';
@@ -104,19 +106,31 @@ export const parseAndroidKeyboardConfig = (
   raw: string | null,
 ): ValidationResult => {
   if (!raw) {
-    return { config: getDefaultAndroidKeyboardConfig(), usedFallback: true };
+    return {
+      config: getDefaultAndroidKeyboardConfig(),
+      usedFallback: true,
+      fallbackReason: 'missing',
+    };
   }
 
   try {
     const parsed = JSON.parse(raw) as unknown;
 
     if (isAndroidKeyboardConfig(parsed)) {
-      return { config: parsed, usedFallback: false };
+      return { config: parsed, usedFallback: false, fallbackReason: null };
     }
 
-    return { config: getDefaultAndroidKeyboardConfig(), usedFallback: true };
+    return {
+      config: getDefaultAndroidKeyboardConfig(),
+      usedFallback: true,
+      fallbackReason: 'invalid',
+    };
   } catch {
-    return { config: getDefaultAndroidKeyboardConfig(), usedFallback: true };
+    return {
+      config: getDefaultAndroidKeyboardConfig(),
+      usedFallback: true,
+      fallbackReason: 'invalid',
+    };
   }
 };
 
