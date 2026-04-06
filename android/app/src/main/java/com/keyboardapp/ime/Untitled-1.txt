@@ -1,0 +1,33 @@
+Whatsap:
+    Audio:Funciona como a função de partilhar e é preciso selecionar a pessoa
+    Foto: É preciso selecionar se é para enviar como sticker ou foto mas já envia para a pessoa certa
+    Enter to Send: É preciso permitir nas definições do whatsap
+Signal:
+    Audio:Só clicar em enviar no fim
+    Foto:Só clicar em enviar no fim
+    Enter to Send:permitir nas definições do Signal
+Gmail:
+    Audio:Cria um mail novo cada vez que se clica no audio
+    Foto:Não deu
+    Enter to Send:Não deu
+Messenger:
+    Audio:Não deu, aparece que dá mas não envia tenho de ver
+    Foto:envia logo a imagem
+    Enter to Send:não da
+Outlook:
+    Audio:Deu bem
+    Foto:Deu bem
+    Enter to Send:Não deu
+Instagram:
+    Audio:igual ao messenger
+    Foto:igual ao messenger
+    Enter to Send:Não deu
+discord:
+    Audio:Igual ao whatsap
+    Foto:É preciso clicar em enviar
+    Enter to Send:Não deu
+
+
+
+
+Então o que se pode fazer com audios é: usar como share e é sempre preciso clicar na pessoa que pretendemos enviar, ou então definir números fixos para quem pertendemos enviar, pode ser por botão, pode se pedir ao user, mas não dá para partilhar para a conversa atual, não conseguimos obter essa informação através do whatsap

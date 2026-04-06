@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <application
       android:name=".MainApplication"
       android:label="@string/app_name"
@@ -37,5 +37,15 @@
           android:name="android.view.im"
           android:resource="@xml/keyboard_ime_method" />
       </service>
+
+      <provider
+          android:name="androidx.core.content.FileProvider"
+          android:authorities="com.keyboardapp.ime.fileprovider" 
+          android:exported="false"
+          android:grantUriPermissions="true">
+          <meta-data
+              android:name="android.support.FILE_PROVIDER_PATHS"
+              android:resource="@xml/file_provider_paths" />
+      </provider>
     </application>
 </manifest>

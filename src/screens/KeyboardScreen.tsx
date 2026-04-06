@@ -47,6 +47,7 @@ const TARGET_APPS: TargetApp[] = ['whatsapp', 'gmail', 'notes', 'browser'];
 const FIELD_TYPES: FieldType[] = ['plainText', 'richContent'];
 const MODE_LABELS: Record<AndroidKeyboardModeId, string> = {
   qwerty: 'QWERTY',
+  numbers: '123',
   words: 'Words',
   photos: 'Photos',
   audio: 'Audio',
@@ -103,8 +104,8 @@ export default function KeyboardScreen() {
 
       if (usedFallback) {
         Alert.alert(
-          'Fallback loaded',
-          'Stored config was missing/corrupt, so default Android config was used.',
+          'Fallback carregado',
+          'A configuração armazenada estava ausente ou corrompida.',
         );
       }
     } catch {
@@ -582,3 +583,4 @@ const styles = StyleSheet.create({
     transform: [{ scale: 1.03 }],
   },
 });
+

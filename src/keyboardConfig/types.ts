@@ -1,7 +1,7 @@
 export const ANDROID_KEYBOARD_CONFIG_VERSION = 1;
 
 export type AndroidKeyboardLayoutId = 'multiMode';
-export type AndroidKeyboardModeId = 'qwerty' | 'words' | 'photos' | 'audio';
+export type AndroidKeyboardModeId = 'qwerty' | 'numbers' | 'words' | 'photos' | 'audio';
 
 export type AndroidKeyboardActionType =
   | 'letter'
@@ -15,7 +15,8 @@ export type AndroidKeyboardActionType =
   | 'capsLock'
   | 'nextKeyboard'
   | 'switchLanguage'
-  | 'switchMode';
+  | 'switchMode'
+  | 'imeAction';
 
 export interface AndroidKeyboardThemeConfig {
   backgroundColor: string;
@@ -44,3 +45,4 @@ export interface AndroidKeyboardConfig {
   theme: AndroidKeyboardThemeConfig;
   modes: Record<AndroidKeyboardModeId, AndroidKeyboardRowConfig[]>;
 }
+

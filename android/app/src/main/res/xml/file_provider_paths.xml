@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <cache-path name="ime_images" path="ime_images/" />
+    <cache-path name="ime_audio" path="ime_audio/" />
+</paths>

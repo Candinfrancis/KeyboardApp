@@ -24,7 +24,7 @@ const isActionType = (value: unknown): value is AndroidKeyboardActionType =>
   value === 'switchMode';
 
 const isModeId = (value: unknown): value is AndroidKeyboardModeId =>
-  value === 'qwerty' || value === 'words' || value === 'photos' || value === 'audio';
+  value === 'qwerty' || value === 'numbers' || value === 'words' || value === 'photos' || value === 'audio';
 
 const isKey = (value: unknown): value is AndroidKeyboardKeyConfig => {
   if (!value || typeof value !== 'object') {
@@ -55,6 +55,7 @@ const isModes = (
 
   return (
     isRows(candidate.qwerty) &&
+    isRows(candidate.numbers) &&
     isRows(candidate.words) &&
     isRows(candidate.photos) &&
     isRows(candidate.audio)
@@ -118,3 +119,4 @@ export const parseAndroidKeyboardConfig = (
     return { config: getDefaultAndroidKeyboardConfig(), usedFallback: true };
   }
 };
+

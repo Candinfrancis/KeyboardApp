@@ -42,7 +42,7 @@ const deleteLastChar = (value: string): string => {
 };
 
 const isModeId = (value: string): value is AndroidKeyboardModeId =>
-  value === 'qwerty' || value === 'words' || value === 'photos' || value === 'audio';
+  value === 'qwerty' || value === 'numbers' || value === 'words' || value === 'photos' || value === 'audio';
 
 export const applyKeyboardAction = (
   state: KeyboardRuntimeState,
@@ -192,3 +192,4 @@ export const applyKeyboardAction = (
     }
   }
 };
+

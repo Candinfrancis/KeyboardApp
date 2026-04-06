@@ -42,7 +42,23 @@ export const loadAndroidKeyboardConfig = async (): Promise<{
   config: AndroidKeyboardConfig;
   usedFallback: boolean;
 }> => {
-  const raw = await AsyncStorage.getItem(ANDROID_IME_CONFIG_STORAGE_KEY);
+  let raw = await AsyncStorage.getItem(ANDROID_IME_CONFIG_STORAGE_KEY);
+
+  // If AsyncStorage doesn't have a config, try reading from the native IME store
+  // (SharedPreferences) via the ImeConfigBridge native module.
+  if (!raw && imeConfigBridge?.getKeyboardConfig) {
+    try {
+      const nativeRaw = await imeConfigBridge.getKeyboardConfig();
+      if (nativeRaw) {
+        // Cache the native config into AsyncStorage for subsequent JS loads.
+        await AsyncStorage.setItem(ANDROID_IME_CONFIG_STORAGE_KEY, nativeRaw);
+        raw = nativeRaw;
+      }
+    } catch {
+      // If native read fails, fall through to parse (which will return fallback).
+    }
+  }
+
   return parseAndroidKeyboardConfig(raw);
 };
 
